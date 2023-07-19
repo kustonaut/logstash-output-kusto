@@ -3,7 +3,6 @@ package org.logstashplugins;
 import co.elastic.logstash.api.PluginConfigSpec;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class KustoConfigProperties {
@@ -52,7 +51,7 @@ public class KustoConfigProperties {
     /*
       # The Kusto endpoint for ingestion related communication. You can see it on the Azure Portal.
      */
-    public static final PluginConfigSpec<String> INGEST_URL =  PluginConfigSpec.requiredStringSetting("ingest_url");
+    public static final PluginConfigSpec<String> INGEST_URL = PluginConfigSpec.requiredStringSetting("ingest_url");
 
     /*  # The following are the credentails used to connect to the Kusto service */
     // # application id
@@ -83,17 +82,17 @@ public class KustoConfigProperties {
     /*
       # Check Proxy URL can be over http or https. Do we need it this way or ignore this & remove this
     */
-    public static final PluginConfigSpec<String> PROXY_PROTOCOL = PluginConfigSpec.stringSetting("proxy_protocol","http");
+    public static final PluginConfigSpec<String> PROXY_PROTOCOL = PluginConfigSpec.stringSetting("proxy_protocol", "http");
 
     /*
     # Specify how many files can be kept in the upload queue before the main process starts processing them in the main thread (not healthy)
     */
-    public static final PluginConfigSpec<Long> UPLOAD_QUEUE_SIZE = PluginConfigSpec.numSetting("upload_queue_size",30);
+    public static final PluginConfigSpec<Long> UPLOAD_QUEUE_SIZE = PluginConfigSpec.numSetting("upload_queue_size", 30);
 
     /*
       # Specify how many files can be uploaded concurrently
      */
-    public static final PluginConfigSpec<Long> UPLOAD_CONCURRENT_COUNT = PluginConfigSpec.numSetting("upload_concurrent_count",30);
+    public static final PluginConfigSpec<Long> UPLOAD_CONCURRENT_COUNT = PluginConfigSpec.numSetting("upload_concurrent_count", 30);
     /*
       # Determines if local files used for temporary storage will be deleted
       # after upload is successful
@@ -103,10 +102,10 @@ public class KustoConfigProperties {
     /*
     # Check Proxy URL can be over http or https. Do we need it this way or ignore this & remove this
     */
-    public static final PluginConfigSpec<Boolean> DYNAMIC_EVENT_MAPPING = PluginConfigSpec.booleanSetting("dynamic_event_routing",false);
+    public static final PluginConfigSpec<Boolean> DYNAMIC_EVENT_MAPPING = PluginConfigSpec.booleanSetting("dynamic_event_routing", false);
 
     public static List<PluginConfigSpec<?>> getAllConfigs() {
-        PluginConfigSpec<?>[] configs =  new PluginConfigSpec<?>[]{PATH_CONFIG,FLUSH_INTERVAL,FILENAME_FAILURE,RECOVERY,INGEST_URL, APP_ID,APP_KEY,TENANT_ID ,MANAGED_IDENTITY_ID,DATABASE,TABLE,JSON_MAPPING,PROXY_HOST,PROXY_PORT,PROXY_PROTOCOL,UPLOAD_QUEUE_SIZE,UPLOAD_CONCURRENT_COUNT,DELETE_TEMP_FILES, DYNAMIC_EVENT_MAPPING};
-        return Arrays.asList(configs);
+        return Arrays.asList(PATH_CONFIG, FLUSH_INTERVAL, FILENAME_FAILURE, RECOVERY, INGEST_URL, APP_ID, APP_KEY, TENANT_ID, MANAGED_IDENTITY_ID, DATABASE, TABLE, JSON_MAPPING, PROXY_HOST, PROXY_PORT, PROXY_PROTOCOL, UPLOAD_QUEUE_SIZE, UPLOAD_CONCURRENT_COUNT, DELETE_TEMP_FILES, DYNAMIC_EVENT_MAPPING);
+
     }
 }
