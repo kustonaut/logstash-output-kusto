@@ -1,4 +1,4 @@
-package org.logstashplugins;
+package com.microsoft.azure.kusto;
 
 import co.elastic.logstash.api.PluginConfigSpec;
 
@@ -104,8 +104,24 @@ public class KustoConfigProperties {
     */
     public static final PluginConfigSpec<Boolean> DYNAMIC_EVENT_MAPPING = PluginConfigSpec.booleanSetting("dynamic_event_routing", false);
 
-    public static List<PluginConfigSpec<?>> getAllConfigs() {
-        return Arrays.asList(PATH_CONFIG, FLUSH_INTERVAL, FILENAME_FAILURE, RECOVERY, INGEST_URL, APP_ID, APP_KEY, TENANT_ID, MANAGED_IDENTITY_ID, DATABASE, TABLE, JSON_MAPPING, PROXY_HOST, PROXY_PORT, PROXY_PROTOCOL, UPLOAD_QUEUE_SIZE, UPLOAD_CONCURRENT_COUNT, DELETE_TEMP_FILES, DYNAMIC_EVENT_MAPPING);
+    /*
+      # If the configured file is deleted, but an event is handled by the plugin,
+      # the plugin will recreate the file. Default => true
+     */
+    public static final PluginConfigSpec<Boolean> CREATE_IF_DELETED = PluginConfigSpec.booleanSetting("create_if_deleted", true);
+    /*
+      # How many seconds before the file will be ingested to Kusto
+     */
+    public static final PluginConfigSpec<Long> INGEST_TIME_SECONDS = PluginConfigSpec.numSetting("ingest_time_seconds", 10);
+    /*
+      # Size before the file is ingested
+    */
+    public static final PluginConfigSpec<Long> INGEST_FILE_SIZE_MB = PluginConfigSpec.numSetting("ingest_file_size_mb", 100);
 
+    public static List<PluginConfigSpec<?>> getAllConfigs() {
+        return Arrays.asList(PATH_CONFIG, FLUSH_INTERVAL, FILENAME_FAILURE, RECOVERY, INGEST_URL, APP_ID, APP_KEY,
+                TENANT_ID, MANAGED_IDENTITY_ID, DATABASE, TABLE, JSON_MAPPING, PROXY_HOST, PROXY_PORT, PROXY_PROTOCOL,
+                UPLOAD_QUEUE_SIZE, UPLOAD_CONCURRENT_COUNT, DELETE_TEMP_FILES, DYNAMIC_EVENT_MAPPING, CREATE_IF_DELETED,
+                INGEST_TIME_SECONDS, INGEST_FILE_SIZE_MB);
     }
 }
